@@ -6,7 +6,6 @@ import Divider from "@mui/material/Divider";
 import Drawer from "@mui/material/Drawer";
 import IconButton from "@mui/material/IconButton";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
-import Autocomplete from "@mui/material/Autocomplete";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
@@ -16,10 +15,14 @@ import TextField from "@mui/material/TextField";
 import Toolbar from "@mui/material/Toolbar";
 import { Link } from "react-router-dom";
 import Button from "@mui/material/Button";
+import SingleFileUploader from "../shared/SingleFileUploader";
 function Shop() {
   const divStyle = {
     paddingLeft: "16rem",
     maxWidth: "500px",
+  };
+  const upload = () => {
+    console.log("testing");
   };
   return (
     <div style={divStyle}>
@@ -27,17 +30,15 @@ function Shop() {
       <Divider />
       <List>
         <ListItem key={"upload"} disablePadding>
-          <Autocomplete
-            disablePortal
-            id="combo-box-demo"
-            options={[""]}
-            sx={{ width: 300 }}
-            renderInput={(params) => (
-              <TextField {...params} label="Upload Json" />
-            )}
-          />
+          {/* <TextField
+            id="standard-basic"
+            label="Standard"
+            variant="standard"
+            onChange={upload}
+          /> */}
+          <SingleFileUploader />
         </ListItem>
-        <ListItem key={"text"} disablePadding component={Link} to="/shop">
+        <ListItem key={"Item"} disablePadding component={Link} to="/shop">
           <ListItemButton>
             <ListItemIcon>
               <InboxIcon />
@@ -45,7 +46,12 @@ function Shop() {
             <ListItemText primary={"Shop Items"} />
           </ListItemButton>
         </ListItem>
-        <ListItem key={"text"} disablePadding component={Link} to="/liveEvents">
+        <ListItem
+          key={"Events"}
+          disablePadding
+          component={Link}
+          to="/liveEvents"
+        >
           <ListItemButton>
             <ListItemIcon>
               <InboxIcon />

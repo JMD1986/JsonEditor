@@ -41,7 +41,7 @@ export default function ResponsiveDrawer(props: Props) {
       <Toolbar />
       <Divider />
       <List>
-        <ListItem key={"text"} disablePadding component={Link} to="/shop">
+        <ListItem key={"shop"} disablePadding component={Link} to="/shop">
           <ListItemButton>
             <ListItemIcon>
               <InboxIcon />
@@ -49,7 +49,12 @@ export default function ResponsiveDrawer(props: Props) {
             <ListItemText primary={"Shop"} />
           </ListItemButton>
         </ListItem>
-        <ListItem key={"text"} disablePadding component={Link} to="/liveEvents">
+        <ListItem
+          key={"liveEvents"}
+          disablePadding
+          component={Link}
+          to="/liveEvents"
+        >
           <ListItemButton>
             <ListItemIcon>
               <InboxIcon />
@@ -58,7 +63,7 @@ export default function ResponsiveDrawer(props: Props) {
           </ListItemButton>
         </ListItem>
         <ListItem
-          key={"text"}
+          key={"hourlyBonus"}
           disablePadding
           component={Link}
           to="/hourlyBonus"
@@ -70,7 +75,12 @@ export default function ResponsiveDrawer(props: Props) {
             <ListItemText primary={"Hourly Bonus"} />
           </ListItemButton>
         </ListItem>
-        <ListItem key={"text"} disablePadding component={Link} to="/miniGame">
+        <ListItem
+          key={"miniGame"}
+          disablePadding
+          component={Link}
+          to="/miniGame"
+        >
           <ListItemButton>
             <ListItemIcon>
               <InboxIcon />
@@ -78,7 +88,7 @@ export default function ResponsiveDrawer(props: Props) {
             <ListItemText primary={"Mini Game"} />
           </ListItemButton>
         </ListItem>
-        <ListItem key={"text"} disablePadding component={Link} to="/mlm">
+        <ListItem key={"mlm"} disablePadding component={Link} to="/mlm">
           <ListItemButton>
             <ListItemIcon>
               <InboxIcon />
@@ -86,7 +96,12 @@ export default function ResponsiveDrawer(props: Props) {
             <ListItemText primary={"Mega Lucky Machines"} />
           </ListItemButton>
         </ListItem>
-        <ListItem key={"text"} disablePadding component={Link} to="/videoAds">
+        <ListItem
+          key={"videoAds"}
+          disablePadding
+          component={Link}
+          to="/videoAds"
+        >
           <ListItemButton>
             <ListItemIcon>
               <InboxIcon />
