@@ -15,7 +15,7 @@ import TextField from "@mui/material/TextField";
 import Toolbar from "@mui/material/Toolbar";
 import { Link } from "react-router-dom";
 import Button from "@mui/material/Button";
-import SingleFileUploader from "../shared/SingleFileUploader";
+import SingleFileUploader from "../components/shared/SingleFileUploader";
 function Shop() {
   const divStyle = {
     paddingLeft: "16rem",
