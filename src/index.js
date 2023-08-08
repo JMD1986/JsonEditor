@@ -12,10 +12,17 @@ import { BrowserRouter } from "react-router-dom";
 import { Outlet } from "react-router-dom";
 import { Provider } from "react-redux";
 import { store } from "./app/store";
+import { ShopList } from "./components/shop/ShopList";
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root />,
+    children: [
+      {
+        path: "shop/shopitems",
+        element: <ShopList />,
+      },
+    ],
   },
   {
     path: "/shop",

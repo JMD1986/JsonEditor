@@ -9,6 +9,7 @@ import VideoAds from "./components/VideoAds";
 import HourlyBonus from "./components/HourlyBonus";
 import { Routes, Route, Outlet, Link } from "react-router-dom";
 import Shop from "./routes/shop";
+import { ShopList } from "./components/shop/ShopList";
 function App() {
   return (
     <div className="App">
@@ -21,6 +22,7 @@ function App() {
           <Route path="shop" element={<Shop />} />
           <Route path="miniGame" element={<MiniGame />} />
           <Route path="mlm" element={<Mlm />} />
+          <Route path="shop/shopitems" element={<ShopList />} />
 
           <Route path="dashboard" element={<Dashboard />} />
 

@@ -26,6 +26,7 @@ const SingleFileUploader: React.FunctionComponent<any> = ({
       const jsonData = await readFileAsync(file); //@ts-ignore
       setFileInfo(file);
       setFileName(file.name);
+      console.log(jsonData);
       upload(jsonData);
     } catch (error: any) {
       upload("Error parsing JSON file: " + error.message);

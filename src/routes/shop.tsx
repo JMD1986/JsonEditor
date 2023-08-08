@@ -13,7 +13,7 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import TextField from "@mui/material/TextField";
 import Toolbar from "@mui/material/Toolbar";
-import { Link } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import Button from "@mui/material/Button";
 import SingleFileUploader from "../components/shared/SingleFileUploader";
 import { ShopList } from "../components/shop/ShopList";
@@ -22,6 +22,7 @@ import { load } from "../app/shopSlice";
 import { useState } from "react";
 function Shop() {
   const [fileName, setFileName] = useState(null);
+  const [view, setView] = useState("");
   const dispatch = useDispatch();
 
   const uploadToState = (file: any) => {
@@ -34,18 +35,18 @@ function Shop() {
   const upload = () => {
     console.log("testing");
   };
+  function Lists() {
+    if (view === "items") {
+      return <ShopList />;
+    }
+  }
+
   return (
     <div style={divStyle}>
       <Toolbar />
       <Divider />
       <List>
         <ListItem key={"upload"} disablePadding>
-          {/* <TextField
-            id="standard-basic"
-            label="Standard"
-            variant="standard"
-            onChange={upload}
-          /> */}
           <ListItemButton>
             <SingleFileUploader
               upload={uploadToState}
@@ -61,7 +62,7 @@ function Shop() {
           </ListItem>
         )}
 
-        <ListItem key={"Item"} disablePadding component={Link} to="/shop">
+        <ListItem onClick={() => setView("items")}>
           <ListItemButton>
             <ListItemIcon>
               <InboxIcon />
@@ -82,11 +83,12 @@ function Shop() {
             <ListItemText primary={"Shop Events"} />
           </ListItemButton>
         </ListItem>
-        <ListItem>
+        {/* <ListItem>
           <ShopList />
-        </ListItem>
+        </ListItem> */}
       </List>
       <Divider />
+      <Lists />
     </div>
   );
 }
