@@ -17,7 +17,16 @@ import { Link } from "react-router-dom";
 import Button from "@mui/material/Button";
 import SingleFileUploader from "../components/shared/SingleFileUploader";
 import { ShopList } from "../components/shop/ShopList";
+import { useDispatch, useSelector } from "react-redux";
+import { load } from "../app/shopSlice";
+import { useState } from "react";
 function Shop() {
+  const [fileName, setFileName] = useState(null);
+  const dispatch = useDispatch();
+
+  const uploadToState = (file: any) => {
+    dispatch(load(file));
+  };
   const divStyle = {
     paddingLeft: "16rem",
     maxWidth: "500px",
@@ -37,8 +46,21 @@ function Shop() {
             variant="standard"
             onChange={upload}
           /> */}
-          <SingleFileUploader />
+          <ListItemButton>
+            <SingleFileUploader
+              upload={uploadToState}
+              setFileName={setFileName}
+            />
+          </ListItemButton>
         </ListItem>
+        {fileName && (
+          <ListItem>
+            <ListItemButton>
+              <ListItemText primary={fileName} />
+            </ListItemButton>
+          </ListItem>
+        )}
+
         <ListItem key={"Item"} disablePadding component={Link} to="/shop">
           <ListItemButton>
             <ListItemIcon>

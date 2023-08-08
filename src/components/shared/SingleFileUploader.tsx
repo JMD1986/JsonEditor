@@ -2,8 +2,13 @@ import React, { useState } from "react";
 import { Button, Input } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { load } from "../../app/shopSlice";
-const SingleFileUploader = () => {
-  const [file, setFile] = useState(null);
+import ListItem from "@mui/material/ListItem";
+import { List } from "material-ui";
+const SingleFileUploader: React.FunctionComponent<any> = ({
+  upload,
+  setFileName,
+}) => {
+  const [fileInfo, setFileInfo] = useState(null as any);
   const [output, setOutput] = useState("");
   const dispatch = useDispatch();
 
@@ -18,10 +23,12 @@ const SingleFileUploader = () => {
     }
 
     try {
-      const jsonData = await readFileAsync(file);
-      setOutput(jsonData);
+      const jsonData = await readFileAsync(file); //@ts-ignore
+      setFileInfo(file);
+      setFileName(file.name);
+      upload(jsonData);
     } catch (error: any) {
-      setOutput("Error parsing JSON file: " + error.message);
+      upload("Error parsing JSON file: " + error.message);
     }
   };
 
@@ -37,28 +44,19 @@ const SingleFileUploader = () => {
 
   const handleUpload = () => {
     console.log(output);
+    console.log(fileInfo);
     dispatch(load(output));
   };
   return (
     <>
       <div>
-        <label htmlFor="file" className="sr-only">
-          Choose a file
-        </label>
-        <Input id="file" type="file" onChange={handleConvert} />
-      </div>
-      {output && (
-        <section>
-          File details:
-          <ul></ul>
-        </section>
-      )}
-
-      {output && (
-        <Button variant="outlined" onClick={handleUpload}>
-          Outlined
+        <Button variant="contained" component="label">
+          Upload File
+          <input type="file" hidden onChange={handleConvert} />
         </Button>
-      )}
+        {/* <Input id="file" type="file" onChange={handleConvert} /> */}
+      </div>
+      {/* <div>{fileInfo && `file name: ${fileInfo.name}`}</div> */}
     </>
   );
 };
