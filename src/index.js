@@ -10,7 +10,8 @@ import Header from "./components/Header";
 import Sidebar from "./components/sidebar";
 import { BrowserRouter } from "react-router-dom";
 import { Outlet } from "react-router-dom";
-
+import { Provider } from "react-redux";
+import { store } from "./app/store";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -33,7 +34,9 @@ root.render(
   // </React.StrictMode>
   <React.StrictMode>
     <BrowserRouter>
-      <App />
+      <Provider store={store}>
+        <App />
+      </Provider>
     </BrowserRouter>
   </React.StrictMode>
 );

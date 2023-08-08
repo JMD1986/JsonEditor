@@ -16,6 +16,7 @@ import Toolbar from "@mui/material/Toolbar";
 import { Link } from "react-router-dom";
 import Button from "@mui/material/Button";
 import SingleFileUploader from "../components/shared/SingleFileUploader";
+import { ShopList } from "../components/shop/ShopList";
 function Shop() {
   const divStyle = {
     paddingLeft: "16rem",
@@ -58,6 +59,9 @@ function Shop() {
             </ListItemIcon>
             <ListItemText primary={"Shop Events"} />
           </ListItemButton>
+        </ListItem>
+        <ListItem>
+          <ShopList />
         </ListItem>
       </List>
       <Divider />

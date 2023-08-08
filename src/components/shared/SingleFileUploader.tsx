@@ -1,57 +1,60 @@
 import React, { useState } from "react";
 import { Button, Input } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
+import { load } from "../../app/shopSlice";
 const SingleFileUploader = () => {
-  const [file, setFile] = useState<File | null>(null);
+  const [file, setFile] = useState(null);
+  const [output, setOutput] = useState("");
+  const dispatch = useDispatch();
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files) {
-      setFile(e.target.files[0]);
+  const handleConvert = async (
+    event: React.ChangeEvent<HTMLInputElement>
+  ): Promise<void> => {
+    const file = event.target.files?.[0];
+
+    if (!file) {
+      setOutput("Please select a JSON file.");
+      return;
+    }
+
+    try {
+      const jsonData = await readFileAsync(file);
+      setOutput(jsonData);
+    } catch (error: any) {
+      setOutput("Error parsing JSON file: " + error.message);
     }
   };
 
-  const handleUpload = async () => {
-    if (file) {
-      console.log("Uploading file...");
-
-      const formData = new FormData();
-      formData.append("file", file);
-
-      try {
-        // You can write the URL of your server or any other endpoint used for file upload
-        const result = await fetch("https://httpbin.org/post", {
-          method: "POST",
-          body: formData,
-        });
-
-        const data = await result.json();
-
-        console.log(data);
-      } catch (error) {
-        console.error(error);
-      }
-    }
+  const readFileAsync = (file: File): Promise<any> => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = (event) =>
+        resolve(JSON.parse(event.target?.result as string));
+      reader.onerror = (error) => reject(error);
+      reader.readAsText(file);
+    });
   };
 
+  const handleUpload = () => {
+    console.log(output);
+    dispatch(load(output));
+  };
   return (
     <>
       <div>
         <label htmlFor="file" className="sr-only">
           Choose a file
         </label>
-        <Input id="file" type="file" onChange={handleFileChange} />
+        <Input id="file" type="file" onChange={handleConvert} />
       </div>
-      {file && (
+      {output && (
         <section>
           File details:
-          <ul>
-            <li>Name: {file.name}</li>
-            <li>Type: {file.type}</li>
-            <li>Size: {file.size} bytes</li>
-          </ul>
+          <ul></ul>
         </section>
       )}
 
-      {file && (
+      {output && (
         <Button variant="outlined" onClick={handleUpload}>
           Outlined
         </Button>

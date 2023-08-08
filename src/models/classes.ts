@@ -25,6 +25,7 @@ import {
   ShopItemInstanceWeightedJson,
   TimingContainerJson,
   ValidJson_2,
+  ShopEventJson,
 } from "./schema";
 import { OrDefault, Require, D } from "./helpers";
 import moment from "moment";
@@ -1247,6 +1248,7 @@ export class ShopEvent {
   }
 }
 
+// eslint-disable-next-line @typescript-eslint/no-redeclare
 export class PlatformIAPAndPrice {
   constructor(
     public readonly StoreType: string,
@@ -1274,7 +1276,29 @@ export class PlatformIAPAndPrice {
     };
   }
 }
-
+export class MockData {
+  constructor(
+    public readonly Shops: any[],
+    public readonly ShopLogicSets: any[],
+    public readonly ShopItems: ShopItemJson[],
+    public readonly ShopEvents: ShopEventJson[],
+    public readonly PlatformIAPAndPrices: any[],
+    public readonly IAPAndPrices: any[],
+    public readonly MaxChipsPerTransaction: number
+  ) {}
+  public static Default(): MockData {
+    return new MockData(
+      [{}],
+      [ShopLogicSet.Default()],
+      //@ts-ignore
+      [ShopItem.Default()],
+      [ShopEvent.Default()],
+      [],
+      [],
+      0
+    );
+  }
+}
 export class ShopSystemState {
   constructor(
     public readonly ShopItems: Dictionary<ShopItem>,
