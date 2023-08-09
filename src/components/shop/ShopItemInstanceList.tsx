@@ -10,34 +10,18 @@ import ListItemText from "@mui/material/ListItemText";
 import IconButton from "@mui/material/IconButton";
 import { useEffect, useState } from "react";
 import ShopItemView from "./ShopItemView";
-export interface IShopListProps {}
-// function testState()
-
-// }
-
-export function ShopList(props: IShopListProps) {
-  const [shopItems, setShopItems] = useState([]);
-  const [selectedShop, setSelectedShop] = useState(null);
-  useEffect(() => {
-    console.log(store.getState());
-    //@ts-ignore
-    setShopItems(store.getState().shop.shop.Shops);
-  });
-  const dispatch = useDispatch();
-  const myState = useSelector((state) => {
-    return state;
-  });
-  const testState = () => {
-    dispatch(load({ test: "test" }));
-  };
+// @ts-ignore
+function ShopItemInstanceList(props) {
   const handleClick = (event: any) => {
-    // console.log(event);
-    setSelectedShop(event);
+    console.log(event);
   };
+  useEffect(() => {
+    console.log(props.instances);
+  });
   return (
     <div>
       <List sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}>
-        {shopItems.map((value) => (
+        {props.instances.map((value: any) => (
           <ListItem
             // @ts-ignore
             key={value.Id}
@@ -56,7 +40,9 @@ export function ShopList(props: IShopListProps) {
         ))}
       </List>
       {/* @ts-ignore  */}
-      {selectedShop && <ShopItemView shop={selectedShop} />}
+      {/* {selectedShop && <ShopItemView shop={selectedShop} />} */}
     </div>
   );
 }
+
+export default ShopItemInstanceList;

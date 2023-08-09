@@ -20,6 +20,7 @@ export const shopSlice = createSlice({
     load: (state, action) => {
       state.shop = action.payload;
     },
+
     // decrement: (state) => {
     //   state.value -= 1;
     // },

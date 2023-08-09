@@ -328,6 +328,22 @@ export class ShopLogicSelector {
   }
 }
 ////s
+export class NewShop23 {
+  constructor(
+    public readonly Id: string,
+    public readonly Name: string,
+    public readonly ShopItemInstances: ShopInstanceJsons[],
+    public readonly IsTimedOffer: boolean,
+    public readonly TimedOffer?:
+      | TimedOffer
+      | NewTimedOfferJson
+      | null
+      | NewTimedOfferJson
+  ) {}
+  public static Default(): NewShop23 {
+    return new NewShop23("", "", [ShopItemInstance.Default()], false);
+  }
+}
 export class NewShop {
   constructor(
     public readonly Name: string,
