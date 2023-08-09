@@ -9,11 +9,13 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import IconButton from "@mui/material/IconButton";
 import { useEffect, useState } from "react";
-import ShopItemView from "./ShopItemView";
+import ShopItemInstanceView from "./ShopItemInstanceView";
 // @ts-ignore
 function ShopItemInstanceList(props) {
+  const [selectedShopItemInstance, setSelectedShopItemInstance] = useState();
   const handleClick = (event: any) => {
     console.log(event);
+    setSelectedShopItemInstance(event);
   };
   useEffect(() => {
     console.log(props.instances);
@@ -25,7 +27,6 @@ function ShopItemInstanceList(props) {
           <ListItem
             // @ts-ignore
             key={value.Id}
-            disableGutters
             // @ts-ignore
             onClick={() => handleClick(value)}
             secondaryAction={
@@ -40,7 +41,9 @@ function ShopItemInstanceList(props) {
         ))}
       </List>
       {/* @ts-ignore  */}
-      {/* {selectedShop && <ShopItemView shop={selectedShop} />} */}
+      {selectedShopItemInstance && (
+        <ShopItemInstanceView shop={selectedShopItemInstance} />
+      )}
     </div>
   );
 }
