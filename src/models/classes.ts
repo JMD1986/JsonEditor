@@ -332,7 +332,7 @@ export class NewShop23 {
   constructor(
     public readonly Id: string,
     public readonly Name: string,
-    public readonly ShopItemInstances: ShopInstanceJsons[],
+    public readonly Shops: ShopInstanceJsons[],
     public readonly IsTimedOffer: boolean,
     public readonly TimedOffer?:
       | TimedOffer

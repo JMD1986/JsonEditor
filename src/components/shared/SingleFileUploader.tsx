@@ -4,10 +4,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { load } from "../../app/shopSlice";
 import ListItem from "@mui/material/ListItem";
 import { List } from "material-ui";
+
+interface FileUpload {
+  upload: any;
+  setFileName: any;
+}
 const SingleFileUploader: React.FunctionComponent<any> = ({
   upload,
   setFileName,
-}) => {
+}: FileUpload) => {
   const [fileInfo, setFileInfo] = useState(null as any);
   const [output, setOutput] = useState("");
   const dispatch = useDispatch();

@@ -10,6 +10,7 @@ import ListItemText from "@mui/material/ListItemText";
 import IconButton from "@mui/material/IconButton";
 import { useEffect, useState } from "react";
 import ShopItemView from "./ShopItemView";
+import { ShopJson } from "../../models/schema";
 export interface IShopListProps {}
 // function testState()
 
@@ -37,12 +38,10 @@ export function ShopList(props: IShopListProps) {
   return (
     <div>
       <List sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}>
-        {shopItems.map((value) => (
+        {shopItems.map((value: ShopJson) => (
           <ListItem
-            // @ts-ignore
             key={value.Id}
             disableGutters
-            // @ts-ignore
             onClick={() => handleClick(value)}
             secondaryAction={
               <IconButton aria-label="comment">
@@ -50,7 +49,6 @@ export function ShopList(props: IShopListProps) {
               </IconButton>
             }
           >
-            {/* @ts-ignore  */}
             <ListItemText primary={`Line item ${value.Name}`} />
           </ListItem>
         ))}

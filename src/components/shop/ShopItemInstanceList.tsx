@@ -10,6 +10,7 @@ import ListItemText from "@mui/material/ListItemText";
 import IconButton from "@mui/material/IconButton";
 import { useEffect, useState } from "react";
 import ShopItemInstanceView from "./ShopItemInstanceView";
+import { ShopShopItemJson } from "../../models/schema";
 // @ts-ignore
 function ShopItemInstanceList(props) {
   const [selectedShopItemInstance, setSelectedShopItemInstance] = useState();
@@ -18,15 +19,14 @@ function ShopItemInstanceList(props) {
     setSelectedShopItemInstance(event);
   };
   useEffect(() => {
-    console.log(props.instances);
+    console.log(props);
   });
   return (
     <div>
       <List sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}>
         {props.instances.map((value: any) => (
           <ListItem
-            // @ts-ignore
-            key={value.Id}
+            key={value.Name}
             // @ts-ignore
             onClick={() => handleClick(value)}
             secondaryAction={
